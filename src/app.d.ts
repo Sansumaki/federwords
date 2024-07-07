@@ -3,10 +3,22 @@
 declare global {
 	namespace App {
 		// interface Error {}
-		// interface Locals {}
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
+		interface Locals {
+			session: {
+				id: string;
+			} | null;
+		}
+
+		interface PrivateEnv {
+			MONGO_URI: string;
+		}
+
+		interface PublicEnv {
+			ENVIRONMENT: 'DEV' | 'PROD';
+		}
 	}
 }
 

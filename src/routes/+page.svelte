@@ -1,2 +1,17 @@
-<h1>Welcome to SvelteKit</h1>
-<p>Visit <a href="https://kit.svelte.dev">kit.svelte.dev</a> to read the documentation</p>
+<script lang="ts">
+    import Footer from '$lib/components/Footer.svelte';
+    import Header from '$lib/components/Header.svelte';
+    import LandingPageMain from '$lib/components/LandingPageMain.svelte';
+    import OurTeam from '$lib/components/OurTeam.svelte';
+    import Testimonials from '$lib/components/Testimonials.svelte';
+</script>
+
+<Header />
+
+<LandingPageMain />
+
+<OurTeam />
+
+<Testimonials />
+
+<Footer />
