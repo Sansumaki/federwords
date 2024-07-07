@@ -8,17 +8,6 @@ declare global {
 		// interface PageData {}
 		// interface PageState {}
 		// interface Platform {}
-		interface Locals {
-			user: APIUser
-		}
-		declare module '@env' {
-			export const DISCORD_OAUTH_CLIENT_ID: string;
-			export const DISCORD_OAUTH_CLIENT_SECRET: string;
-			export const DISCORD_REDIRECT_URI: string;
-			export const PUBLIC_DISCORD_AUTH_URI: string;
-
-			// other ones
-		}
 	}
 }
 
