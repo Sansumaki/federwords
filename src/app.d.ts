@@ -1,5 +1,7 @@
 // See https://kit.svelte.dev/docs/types#app
 // for information about these interfaces
+import type {APIUser} from "discord-api-types/v10";
+
 declare global {
 	namespace App {
 		// interface Error {}
@@ -7,17 +9,15 @@ declare global {
 		// interface PageState {}
 		// interface Platform {}
 		interface Locals {
-			session: {
-				id: string;
-			} | null;
+			user: APIUser
 		}
+		declare module '@env' {
+			export const DISCORD_OAUTH_CLIENT_ID: string;
+			export const DISCORD_OAUTH_CLIENT_SECRET: string;
+			export const DISCORD_REDIRECT_URI: string;
+			export const PUBLIC_DISCORD_AUTH_URI: string;
 
-		interface PrivateEnv {
-			MONGO_URI: string;
-		}
-
-		interface PublicEnv {
-			ENVIRONMENT: 'DEV' | 'PROD';
+			// other ones
 		}
 	}
 }

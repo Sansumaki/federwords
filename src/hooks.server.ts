@@ -1,35 +1,14 @@
-import { fetchSession } from '$lib/utils/sessionHandler';
-import type { Handle } from '@sveltejs/kit';
-import { themes } from '$lib/utils/themes';
-
-import mongoose from "mongoose";
-import {MongoMemoryServer} from "mongodb-memory-server";
-
-
-mongoose.set('strictQuery', false);
-
-const mongod = new MongoMemoryServer();
-await mongod.start();
-const uri = mongod.getUri();
-
-await mongoose.connect(uri);
+import { fetchSession } from '$lib/server/sessionHandler';
+import { redirect, type Handle } from '@sveltejs/kit';
 
 export const handle = (async ({ event, resolve }) => {
-	const sessionID = event.cookies.get('session_id');;
-	const theme = event.cookies.get('theme');
 
-	event.locals.session = null;
+	const sessionID = event.cookies.get('session_id');
+	event.locals.user = fetchSession(sessionID);
 
-	if (sessionID) {
-		const session = fetchSession(sessionID);
-		if (session)
-			event.locals.session = { id: sessionID };
+	if (event.url.pathname.startsWith('/protected')) {
+		// if (!event.locals.user) throw redirect(303, '/');
 	}
-
-	if (theme && themes.includes(theme)) return await resolve(event, {
-		transformPageChunk: ({ html }) =>
-			html.replace('data-theme=""', `data-theme="${theme}"`)
-	})
 
 	return await resolve(event);
 }) satisfies Handle;

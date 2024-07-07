@@ -1,17 +1,8 @@
 <script lang="ts">
-    import Footer from '$lib/components/Footer.svelte';
-    import Header from '$lib/components/Header.svelte';
-    import LandingPageMain from '$lib/components/LandingPageMain.svelte';
-    import OurTeam from '$lib/components/OurTeam.svelte';
-    import Testimonials from '$lib/components/Testimonials.svelte';
+
+    import {PUBLIC_DISCORD_AUTH_URI} from '$env/static/public';
 </script>
 
-<Header />
-
-<LandingPageMain />
-
-<OurTeam />
-
-<Testimonials />
-
-<Footer />
+<button on:click={() => (window.location.href = PUBLIC_DISCORD_AUTH_URI)}>
+    Login with Discord
+</button>

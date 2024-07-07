@@ -1,22 +1,20 @@
-import { json } from '@sveltejs/kit';
-import { deleteSession } from '$lib/utils/sessionHandler';
+import { deleteSession } from '$lib/server/sessionHandler';
 import cookie from 'cookie';
-import { PUBLIC_ENVIRONMENT } from '$env/static/public';
 
 export async function POST({ request }) {
+
 	const cookies = cookie.parse(request.headers.get('cookie') || '');
+	if (cookies['session_id']) deleteSession(cookies['session_id']);
 
-	deleteSession(cookies.session_id);
-
-	return json({}, {
+	return new Response('', {
+		status: 200,
 		headers: {
 			'Set-Cookie': cookie.serialize('session_id', null, {
-				httpOnly: true,
-				sameSite: 'lax',
-				secure: false,
 				path: '/',
-				domain: PUBLIC_ENVIRONMENT === 'DEV' ? '' : "DOMAIN_HERE",
-				expires: new Date()
+				httpOnly: true,
+				sameSite: false,
+				secure: true,
+				maxAge: 0
 			})
 		}
 	});
