@@ -1,20 +1,32 @@
-<script lang="ts">
-    // import '../styles/sanitize.css';
-    import '../styles/index.css';
-    import "@fortawesome/fontawesome-free/css/all.min.css"
+<script>
+	import '../app.css';
 </script>
 
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        height: 100vh;
+        margin: 0;
+        background-color: #f4f4f4;
+        background-image: url("/background.webp");
+        background-size: cover;
+        background-position: center center;
+        background-repeat: no-repeat;
+    }
+</style>
+
 <svelte:head>
-    <title>Skeleton 🦴💀🦴</title>
-    <meta name="description" content="" />
-    <meta name="author" content="" />
-    <meta name="copyright" content="" />
-    <meta name="generator" content="svelte" />
-    <meta name="og:title" content="" />
-    <meta name="twitter:title" content="" />
-    <meta name="og:description" content="" />
-    <meta name="twitter:description" content="" />
-    <!-- <meta property="og:image" content="%svelte.assets%/logo.png" /> -->
+    <title>Meine Homepage</title>
 </svelte:head>
 
-<slot />
+<body>
+<header>
+    <h1 class="drop-shadow-lg text-gray-700 font-mono font-bold font-italic text-6xl text-center pt-[120px]">Federkratzer Word Challange</h1>
+</header>
+
+<slot></slot>
+
+<footer class="bg-gray-900 text-white text-center p-2 fixed w-full bottom-0">
+    <p>&copy; 2024 Santasia. Alle Rechte vorbehalten.</p>
+</footer>
+</body>
