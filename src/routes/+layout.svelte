@@ -1,5 +1,5 @@
 <script>
-	import '../styles/index.css';
+	import '../app.css';
 </script>
 
 <style>
@@ -11,6 +11,7 @@
         background-image: url("/background.webp");
         background-size: cover;
         background-position: center center;
+        background-attachment: fixed;
         background-repeat: no-repeat;
     }
 </style>
